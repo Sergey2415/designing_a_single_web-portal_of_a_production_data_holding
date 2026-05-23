@@ -1,0 +1,148 @@
+.reports-page {
+    margin-left: 260px;
+    margin-top: 84px;
+    padding: 32px;
+}
+
+.reports-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Фильтры */
+.filters-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-row label {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.filter-row select {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.filter-row button {
+    margin-left: auto;
+}
+
+/* Таблица */
+.reports-table h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding-top: 16px;
+}
+
+.pagination-btn {
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pagination-btn:hover {
+    background: rgba(19, 127, 236, 0.08);
+}
+
+.pagination-pages {
+    display: flex;
+    gap: 6px;
+}
+
+.page {
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.page.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+}
+
+.page-ellipsis {
+    padding: 6px 10px;
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-badge.status-ready {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.status-inProgress {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge.status-accepted {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* Button sizes */
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 13px;
+}
+
+/* Table row clickable */
+.table tbody tr {
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.table tbody tr:hover {
+    background: rgba(19, 127, 236, 0.05);
+}

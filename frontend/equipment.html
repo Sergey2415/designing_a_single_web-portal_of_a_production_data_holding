@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оборудование и техническое обслуживание — Единый портал</title>
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme'); // "light" | "dark" | "system" | null
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/equipment.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/permissions.js" defer></script>
+    <script src="js/layout.js" defer></script>
+    <script src="js/equipment.js" defer></script>
+</head>
+
+<body class="app-layout">
+    <header id="header"></header>
+    <aside id="sidebar"></aside>
+
+    <main class="main-content">
+
+
+        <!-- Header -->
+        <div class="page-header">
+            <h1 class="page-title">Оборудование и техническое обслуживание</h1>
+            <p class="page-subtitle">
+                Мониторинг состояния оборудования, планирование ТО и анализ простоев
+            </p>
+        </div>
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> /
+            <span>Оборудование и ТО</span>
+        </div>
+        <!-- Фильтры -->
+        <section class="filters-section card">
+            <div class="filter-row">
+                <label>Филиал:</label>
+                <select class="form-input" id="branchFilter">
+                    <option value="all">Все филиалы</option>
+                    <option value="Москва">Москва</option>
+                    <option value="Иркутск">Иркутск</option>
+                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                    <option value="Казань">Казань</option>
+                </select>
+                <label>Тип оборудования:</label>
+                <select class="form-input" id="typeFilter">
+                    <option value="all">Все типы</option>
+                    <option value="production">Производственное</option>
+                    <option value="auxiliary">Вспомогательное</option>
+                    <option value="transport">Транспортное</option>
+                </select>
+                <label>Статус:</label>
+                <select class="form-input" id="statusFilter">
+                    <option value="all">Все</option>
+                    <option value="inprogress">В работе</option>
+                    <option value="ready">Готов</option>
+                    <option value="accepted">Принято</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Таблица -->
+        <section class="card">
+            <div class="table-header">
+                <h2>Мониторинг состояния оборудования</h2>
+                <button class="btn btn-primary" id="addEquipmentBtn">+ Добавить оборудование</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Филиал</th>
+                        <th>Тип</th>
+                        <th>Статус</th>
+                        <th>Последняя проверка</th>
+                        <th>Ответственный</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 20px;">Загрузка...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- График состояния оборудования -->
+        <section class="card">
+            <h2>Состояние оборудования (по филиалам)</h2>
+            <canvas id="equipmentStatusChart" height="120"></canvas>
+        </section>
+
+        <!-- Анализ простоев -->
+        <section class="card">
+            <h2>Анализ простоев</h2>
+            <p>Общий уровень простоев: <strong>...</strong></p>
+            <canvas id="downtimeGraph" height="100"></canvas>
+            <button class="btn btn-outline" id="exportDowntimeBtn">Скачать отчёт</button>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+</body>
+
+</html>

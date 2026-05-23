@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Unbounded:wght@200..900&display=swap"
+        rel="stylesheet">
+    <title>Главная — Единый портал</title>
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme'); // "light" | "dark" | "system" | null
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script src="js/layout.js" defer></script>
+</head>
+
+<body>
+    <!-- Хэдер и меню подгружаются layout.js -->
+    <main class="dashboard-page">
+
+        <!-- Заголовок -->
+        <header class="dashboard-header">
+            <h1 class="portal-title">
+                <span class="portal-title-main">ЕДИНЫЙ ВЕБ-ПОРТАЛ</span><br />
+                <span class="portal-title-sub">ПРОИЗВОДСТВЕННЫХ ДАННЫХ ХОЛДИНГА</span>
+            </h1>
+        </header>
+
+        <!-- 🔹 Сводка KPI -->
+        <section class="card dashboard-section">
+            <div class="section-header">
+                <h2>Сводка ключевых показателей</h2>
+                <select class="branch-select">
+                    <option>Все филиалы</option>
+                    <option>Москва</option>
+                    <option>Иркутск</option>
+                </select>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h3>Производительность</h3>
+                    <p class="kpi-value">120 тонн/чел</p>
+                    <p class="kpi-change positive">+10%</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Стоимость за тонну</h3>
+                    <p class="kpi-value">3450₽/тонн</p>
+                    <p class="kpi-change negative">−5%</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Безотказная работа оборудования</h3>
+                    <p class="kpi-value">95%</p>
+                    <p class="kpi-change positive">+2%</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Индекс эффективности</h3>
+                    <p class="kpi-value">8.5</p>
+                    <p class="kpi-change positive">+1%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🔹 Текущие тенденции -->
+        <section class="card dashboard-section">
+            <h2>Текущие тенденции</h2>
+            <div class="trends-grid">
+                <div class="trend-card">
+
+                    <div class="chart-placeholder">
+                        <img src="img/prod-graph.png" alt="График производства">
+                    </div>
+                </div>
+
+                <div class="trend-card">
+
+                    <div class="chart-placeholder">
+                        <img src="img/prost-graph.png" alt="Диаграмма простоев">
+                    </div>
+                </div>
+
+                <div class="trend-card notifications-card">
+                    <h3>Уведомления</h3>
+                    <ul class="notifications-list">
+                        <li class="notif error">🔴 Простой оборудования — RM-102 остановлено, >2ч</li>
+                        <li class="notif warning">🟡 Напоминание о техобслуживании через 5 дней</li>
+                        <li class="notif success">🟢 Импорт данных завершён успешно</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🔹 Быстрый доступ -->
+        <section class="quick-access">
+            <h2>Быстрый доступ</h2>
+            <div class="quick-buttons">
+                <a href="reports.html" class="btn btn-primary">ОТЧЁТЫ</a>
+                <a href="equipment.html" class="btn btn-primary">ОБОРУДОВАНИЕ</a>
+                <a href="data.html" class="btn btn-primary">ДАННЫЕ</a>
+                <a href="finances.html" class="btn btn-primary">ФИНАНСЫ</a>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

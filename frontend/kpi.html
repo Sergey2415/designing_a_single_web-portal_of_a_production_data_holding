@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KPI — Единый портал</title>
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme'); // "light" | "dark" | "system" | null
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/kpi.css" />
+    <script src="js/layout.js" defer></script>
+    <script src="js/kpi.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1 class="page-title">Показатели KPI</h1>
+
+        <div class="toolbar">
+            <button class="btn btn-outline" id="exportPdfBtn">Экспорт в PDF</button>
+            <button class="btn btn-outline" id="exportExcelBtn">Экспорт в Excel</button>
+        </div>
+
+        <section class="card filter-panel">
+            <div class="filter-row">
+                <label>Период:</label>
+                <select id="periodFilter">
+                    <option>Загрузка...</option>
+                </select>
+                <label>Филиал:</label>
+                <select id="branchFilter">
+                    <option>Загрузка...</option>
+                </select>
+                <label>Тип показателя:</label>
+                <select id="typeFilter">
+                    <option>Загрузка...</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Наименование показателя</th>
+                        <th>План</th>
+                        <th>Факт</th>
+                        <th>Отклонение</th>
+                        <th>Тренд</th>
+                    </tr>
+                </thead>
+                <tbody id="kpiTableBody">
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 20px;">Загрузка...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card kpi-summary">
+            <div class="summary-block">
+                <h3 class="section-title">
+                    <img src="img/icons/kpi.svg" alt="" class="sidebar-icon">
+                    Тренд KPI
+                </h3>
+                <p class="summary-value" id="trendValue">Загрузка...</p>
+                <p class="summary-sub" id="trendSub"></p>
+            </div>
+            <div class="summary-block">
+                <h3 class="section-title">
+                    <img src="img/icons/comparison.svg" alt="" class="sidebar-icon">
+                    Сравнение филиалов
+                </h3>
+                <p class="summary-value" id="compareValue">Загрузка...</p>
+                <p class="summary-sub" id="compareSub"></p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

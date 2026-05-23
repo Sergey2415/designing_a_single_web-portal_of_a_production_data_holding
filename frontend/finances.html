@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Финансово-аналитический модуль — Единый портал</title>
+
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/finances.css" />
+    <script src="js/layout.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- Хэдер и меню подгружаются layout.js -->
+    <main class="finances-page">
+        <div class="page-header">
+            <h1 class="page-title">Финансово-аналитический модуль</h1>
+            <small class="update-time">Обновлено: 25 октября 2025, 16:57 CEST</small>
+        </div>
+
+        <!-- 🔹 Карточки метрик -->
+        <section class="metrics-grid">
+            <div class="card metric-card">
+                <h3 class="section-title">
+                    <img src="img/icons/ruble.svg" alt="" class="sidebar-icon">
+                    Стоимость за единицу
+                </h3>
+                <div class="metric-value">Загрузка...</div>
+                <div class="metric-change">Загрузка...</div>
+                <canvas id="unitCostChart" height="60"></canvas>
+            </div>
+
+            <div class="card metric-card">
+                <h3 class="section-title">
+                    <img src="img/icons/dynamics.svg" alt="" class="sidebar-icon">
+                    Динамика затрат
+                </h3>
+                <div class="filter-row">
+                    <button class="btn btn-outline active" data-period="all">Все</button>
+                    <button class="btn btn-outline" data-period="q1">I кв.</button>
+                    <button class="btn btn-outline" data-period="q2">II кв.</button>
+                    <button class="btn btn-outline" data-period="q3">III кв.</button>
+                    <button class="btn btn-outline" data-period="q4">IV кв.</button>
+                </div>
+                <canvas id="costDynamicsChart"></canvas>
+            </div>
+        </section>
+
+        <!-- 🔹 Таблица -->
+        <section class="card finances-table">
+            <div class="table-header">
+                <h2>Сравнение затрат</h2>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Период</th>
+                        <th>Филиал</th>
+                        <th>Тип затрат</th>
+                        <th>Сумма</th>
+                        <th>Комментарий</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 20px;">Загрузка...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 🔹 График бюджета -->
+        <section class="card budget-section">
+            <h2>Бюджет и эффективность</h2>
+            <div class="filter-row">
+                <select id="budgetDepartment" class="filter-select">
+                    <option value="">Все филиалы</option>
+                    <option value="Производственный отдел">Производственный отдел</option>
+                    <option value="Инженерная команда">Инженерная команда</option>
+                    <option value="Транспортный отдел">Транспортный отдел</option>
+                    <option value="IT отдел">IT отдел</option>
+                    <option value="Отдел качества">Отдел качества</option>
+                    <option value="Административный отдел">Административный отдел</option>
+                </select>
+                <select id="budgetPeriod" class="filter-select">
+                    <option value="">Все периоды</option>
+                    <option value="Q1 2025">Q1 2025</option>
+                    <option value="Q2 2025">Q2 2025</option>
+                    <option value="Q3 2025">Q3 2025</option>
+                    <option value="Q4 2025">Q4 2025</option>
+                    <option value="2025-10">Октябрь 2025</option>
+                    <option value="2025-11">Ноябрь 2025</option>
+                    <option value="2025-12">Декабрь 2025</option>
+                </select>
+                <button class="btn btn-primary" id="applyBudgetFilters">Применить</button>
+                <button class="btn btn-outline" id="resetBudgetFilters">Сбросить</button>
+            </div>
+            <canvas id="budgetEfficiencyChart"></canvas>
+
+            <div class="legend">
+                <span class="status warn">Перерасход</span>
+                <span class="status ok">В рамках бюджета</span>
+                <span class="status positive">Экономия</span>
+            </div>
+        </section>
+
+        <!-- 🔹 Отчётность -->
+        <section class="card reports-section">
+            <h2>Отчётность для руководства</h2>
+
+            <div class="form-group">
+                <label>Ежедневный отчёт</label>
+                <input type="text" readonly value="Скачать последний отчёт в формате CSV" />
+                <button class="btn btn-outline" id="downloadDaily">Скачать</button>
+            </div>
+
+            <div class="form-group">
+                <label>Ежемесячный отчёт</label>
+                <input type="text" readonly value="Скачать последний отчёт в формате CSV" />
+                <button class="btn btn-outline" id="downloadMonthly">Скачать</button>
+            </div>
+
+            <div class="form-group">
+                <label>Ежеквартальный отчёт</label>
+                <input type="text" readonly value="Скачать последний отчёт в формате CSV" />
+                <button class="btn btn-outline" id="downloadQuarterly">Скачать</button>
+            </div>
+
+            <button class="btn btn-primary" id="updateReportBtn">Обновить отчёт</button>
+        </section>
+    </main>
+
+    <!-- Модальное окно обновления отчета -->
+    <div id="updateReportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Обновить отчёт</h2>
+                <button class="modal-close" onclick="closeUpdateReportModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group-modal">
+                    <label for="reportType">Тип отчёта</label>
+                    <select id="reportType" class="form-input">
+                        <option value="daily">Ежедневный отчёт</option>
+                        <option value="monthly">Ежемесячный отчёт</option>
+                        <option value="quarterly">Ежеквартальный отчёт</option>
+                    </select>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="reportFile">Файл данных (CSV)</label>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <input type="file" id="reportFile" accept=".csv" class="file-input" onchange="handleFileSelect(event)">
+                        <div class="file-upload-placeholder">
+                            <span class="file-icon">📁</span>
+                            <p>Нажмите для выбора файла или перетащите сюда</p>
+                            <small>Поддерживается только CSV формат</small>
+                        </div>
+                        <div class="file-selected" id="fileSelected" style="display: none;">
+                            <span class="file-icon">✓</span>
+                            <span id="fileName"></span>
+                            <button type="button" class="btn-remove" onclick="removeFile()">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="reportPeriod">Период</label>
+                    <input type="text" id="reportPeriod" class="form-input" placeholder="Например: 2025-Q4 или 2025-10">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeUpdateReportModal()">Отмена</button>
+                <button class="btn btn-primary" onclick="uploadReport()">Загрузить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/finances.js"></script>
+</body>
+
+</html>

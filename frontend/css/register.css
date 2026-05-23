@@ -1,0 +1,401 @@
+/* === Фон и структура === */
+.register-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin-left: 0;
+    margin-top: 65px;
+    padding: 40px 20px;
+    background: var(--bg);
+    position: relative;
+}
+
+.register-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        url("../img/bg-pattern.jpg") center/cover no-repeat,
+        radial-gradient(circle at 20% 30%, rgba(19, 127, 236, 0.12), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.12), transparent 80%);
+    opacity: 0.3;
+    background-size: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 20px;
+    z-index: 1;
+    position: relative;
+    padding: 15px 25px;
+    display: inline-block;
+}
+
+.page-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+    z-index: -1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* === Хедер === */
+.auth-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+}
+
+.auth-header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.auth-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.auth-logo img {
+    width: 28px;
+    height: 28px;
+}
+
+.auth-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-auth {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-auth.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+}
+
+/* === Карточки === */
+.tip-block,
+.register-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 1;
+    position: relative;
+    width: 720px;
+    padding: 32px 40px;
+    margin-bottom: 24px;
+}
+
+.register-card {
+    animation: fadeIn 0.6s ease;
+}
+
+.tip-block {
+    border-left: 4px solid var(--accent);
+    background: var(--surface);
+    padding-left: 32px;
+    background: rgba(7, 18, 55, 0.7);
+    animation: fadeIn 3s ease;
+}
+
+.tip-block p {
+    color: #fff
+}
+
+.tip-block::before {
+    position: absolute;
+    left: 12px;
+    top: 18px;
+    font-size: 18px;
+    color: var(--accent);
+}
+
+.tip-block h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.tip-block ul {
+    margin-top: 8px;
+    padding-left: 18px;
+    color: white;
+}
+
+.tip-block li {
+    margin-bottom: 6px;
+    color: white;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    padding: 10px 12px;
+    font-size: 15px;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+/* Hover & Focus эффект */
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: var(--accent);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(19, 127, 236, 0.25);
+    outline: none;
+}
+
+.checkbox-group {
+    font-size: 16px;
+    color: var(--text-light);
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.checkbox-group label a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 2px;
+}
+
+.checkbox-group a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+
+/* Лёгкая анимация подчёркивания */
+.checkbox-group label a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+/* Анимация при наведении */
+.checkbox-group label a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Для текущего элемента (span) можно чуть приглушить */
+.checkbox-group label span {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.checkbox-group input[type="checkbox"] {
+    accent-color: var(--accent);
+    transform: scale(1.2);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #137fec, #004de6);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #0b5fdc, #003ad1);
+}
+
+.form-note {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.register-page {
+    background-color: #0b1626 !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../img/bg-pattern.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.register-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 10, 25, 0.62);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.register-page .page-title,
+.register-page .auth-header,
+.register-page .auth-header-container,
+.register-page .tip-block,
+.register-page .register-card,
+.register-page .register-form,
+.register-page .register-container,
+.register-page .form-note {
+    position: relative;
+    z-index: 2;
+}
+
+.register-card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .register-card {
+    background: rgba(30, 41, 59, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--text);
+}
+
+.tip-block {
+    background: rgba(7, 18, 55, 0.42);
+    color: var(--text-light);
+    border-left-color: var(--accent);
+    border-color: navy;
+}
+
+.register-page main,
+.register-page .container,
+.register-page .content,
+.register-page .main-content {
+    background: transparent !important;
+}
+
+.register-page,
+.register-card,
+.tip-block {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.register-page .page-title {
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
+}
+
+.tip-block {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}

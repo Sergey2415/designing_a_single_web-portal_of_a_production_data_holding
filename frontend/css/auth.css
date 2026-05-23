@@ -1,0 +1,428 @@
+/* === Фон и структура === */
+/* === Структура и фон === */
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin-left: 0;
+    margin-top: 65px;
+    padding: 40px 20px;
+    background: var(--bg);
+    position: relative;
+}
+
+body.auth-page,
+body.register-page {
+    margin: 0;
+    overflow-x: hidden;
+    /* 💣 Убираем горизонтальную прокрутку */
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 24px;
+    z-index: 1;
+    position: relative;
+    padding: 15px 25px;
+    display: inline-block;
+}
+
+.page-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+    z-index: -1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.auth-page main {
+    margin: 0;
+    margin-left: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        url("../img/bg-pattern.jpg") center/cover no-repeat,
+        radial-gradient(circle at 20% 30%, rgba(19, 127, 236, 0.12), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.12), transparent 80%);
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* === Хедер === */
+.auth-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+}
+
+.auth-header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.auth-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.auth-logo img {
+    width: 28px;
+    height: 28px;
+}
+
+.auth-actions {
+    display: flex;
+    gap: 12px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    padding: 10px 12px;
+    font-size: 15px;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+/* Hover & Focus эффект */
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: var(--accent);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(19, 127, 236, 0.25);
+    outline: none;
+}
+
+.btn-auth {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-auth.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+}
+
+/* ---------- Основная часть ---------- */
+.auth-main {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.auth-container {
+    max-width: 720px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-info {
+    margin-bottom: 24px;
+}
+
+.auth-info h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.auth-info p {
+    color: var(--text-light);
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.tip-block {
+    border-left: 4px solid var(--accent);
+    background: rgba(4, 15, 52, 0.7);
+    border-radius: var(--radius);
+    padding: 20px 32px;
+    color: rgb(0, 0, 0);
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto 24px;
+    text-align: left;
+    animation: fadeIn 3s ease;
+}
+
+.tip-block h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.tip-block p {
+    color: white;
+}
+
+/* ---------- Карточка формы ---------- */
+.auth-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px 40px;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeIn 0.6s ease;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-light);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, 0.25);
+    outline: none;
+}
+
+/* ---------- Доп. опции ---------- */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-light);
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.text-link,
+.forgot-link {
+    position: relative;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.text-link::after,
+.forgot-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.text-link:hover::after,
+.forgot-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ---------- Кнопка ---------- */
+.btn--large {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+/* ---------- Подвал формы ---------- */
+.auth-note {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.text-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+/* ---------- Анимация успешного входа ---------- */
+.auth-success {
+    animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === AUTH: надежный фон (картинка + универсальная тёмная маска поверх) === */
+.auth-page {
+    /* гарантируем, что базовый фон не белый */
+    background-color: #0b1626 !important;
+    /* тёмная основа под картинку */
+    position: relative;
+    overflow: hidden;
+}
+
+/* фон-картинка (находится под маской) */
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../img/bg-pattern.jpg");
+    /* путь поправь, если нужно */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    /* картинка полная */
+    z-index: 0;
+    /* самый низ */
+    pointer-events: none;
+}
+
+/* полупрозрачная тёмная маска поверх картинки — именно она делает фотографию «тёмной» */
+.auth-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 10, 25, 0.62);
+    /* тёмная маска, регулировать альфу 0.4..0.75 */
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* содержимое страницы (карточки и текст) должно быть выше маски */
+.auth-container,
+.tip-block,
+.auth-card,
+.page-title {
+    position: relative;
+    z-index: 2;
+}
+
+/* сделаем карточку чуть более непрозрачной — чтобы она не «сливалась» с фоном */
+.auth-card {
+    background: rgba(255, 255, 255, 0.96);
+    /* для тёмной маски — отличное контрастное белое окно */
+    /* если хочешь, в тёмной теме карточка может быть тёмной — ниже будет правило */
+}
+
+/* Поддержка тёмной темы: карточка и блок подсказки при data-theme="dark" */
+[data-theme="dark"] .auth-card {
+    background: rgba(30, 41, 59, 0.96);
+    /* чуть непрозрачный тёмный фон */
+    color: var(--text);
+}
+
+[data-theme="dark"] .tip-block {
+    background: rgba(6, 24, 84, 0.6);
+    color: var(--text-light);
+}
+
+[data-theme="light"] .tip-block {
+    background: rgba(6, 24, 84, 0.6);
+}
+
+.tip-block {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}

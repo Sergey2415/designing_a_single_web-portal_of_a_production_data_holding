@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Заявка на регистрацию — Единый портал</title>
+    <script>
+        // Автоустановка темы (как в create-task)
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/register.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Unbounded:wght@200..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <!--хедер только для страницы регистрации и входа -->
+    <header class="auth-header">
+        <div class="auth-header-container">
+            <div class="header-left">
+                <img src="img/company.png" alt="Логотип" class="logo" />
+                <h1 class="app-title">Единый Портал производственных данных</h1>
+            </div>
+            <div class="auth-actions">
+                <a href="auth.html" class="btn-auth">Войти</a>
+                <a href="register.html" class="btn-auth active">Регистрация</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="register-page">
+        <h1 class="page-title">Заявка на регистрацию</h1>
+
+        <!-- Всплывающая подсказка, как в create-task -->
+        <section class="card tip-block">
+            <h3>Информация</h3>
+            <p>Доступ предоставляется только сотрудникам предприятий Холдинга.</p>
+            <ul>
+                <li>После заполнения форма отправляется администратору</li>
+                <li>Проверьте корректность почты и контактных данных</li>
+                <li>Заявки обрабатываются в течение 1–2 рабочих дней</li>
+            </ul>
+        </section>
+
+        <!-- Карточка формы -->
+        <section class="card register-card">
+            <form id="registerForm" class="register-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullName">ФИО <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Иванов Иван Иванович" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Должность</label>
+                        <input type="text" id="position" name="position" placeholder="Введите должность" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Рабочая электронная почта</label>
+                        <input type="email" id="email" name="email" placeholder="example@company.ru" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Контактный телефон</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7(999)-123-45-67" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organization">Организация / филиал</label>
+                        <select id="organization" name="organization" required>
+                            <option value="" disabled selected hidden>Выберите из списка</option>
+                            <option value="factory1">Завод №1</option>
+                            <option value="factory2">Завод №2</option>
+                            <option value="factory3">Завод №3</option>
+                            <option value="headquarters">Центральный офис</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Желаемая роль в системе</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected hidden>Выберите роль</option>
+                            <option value="employee">Сотрудник</option>
+                            <option value="manager">Руководитель отдела</option>
+                            <option value="director">Руководитель филиала</option>
+                            <option value="analyst">Аналитик</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="comment">Комментарий / Обоснование запроса</label>
+                    <textarea id="comment" name="comment" rows="4" placeholder="Оставьте комментарий..."></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="agreement" required />
+                        Я согласен с <a href="#">условиями обслуживания</a> и <a href="#">политикой
+                            конфиденциальности</a>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">Отправить заявку</button>
+                </div>
+
+                <p class="form-note">Уже зарегистрированы? <a href="auth.html">Войти</a></p>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/register.js"></script>
+</body>
+
+</html>

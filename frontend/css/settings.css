@@ -1,0 +1,574 @@
+.settings-block h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-item label {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-item select,
+.form-item input {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    transition: all 0.3s ease;
+}
+
+.form-item select:focus,
+.form-item input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, 0.2);
+    background: var(--white);
+    color: var(--text);
+}
+
+/* --------------------
+   🎨 ТЕМА ОФОРМЛЕНИЯ
+---------------------*/
+.theme-options {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.theme-card {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    width: 120px;
+    transition: 0.2s;
+}
+
+.theme-card.active {
+    border-color: var(--accent);
+    background: rgba(19, 127, 236, 0.05);
+}
+
+.theme-card input {
+    display: none;
+}
+
+.theme-preview {
+    height: 50px;
+    border-radius: var(--radius);
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+}
+
+.theme-preview.light {
+    background: #fff;
+}
+
+.theme-preview.dark {
+    background: #1e293b;
+}
+
+.theme-preview.system {
+    background: linear-gradient(90deg, #fff 50%, #1e293b 50%);
+}
+
+/* --------------------
+   🔔 УВЕДОМЛЕНИЯ
+---------------------*/
+.notify-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+.notify-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.volume-control {
+    margin-bottom: 16px;
+}
+
+.volume-control input[type="range"] {
+    width: 200px;
+}
+
+/* --------------------
+   🕹️ SWITCH
+---------------------*/
+.switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: .3s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+input:checked+.slider {
+    background-color: var(--accent);
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+/* --------------------
+   ℹ️ СИСТЕМНАЯ ИНФОРМАЦИЯ
+---------------------*/
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 26px;
+    margin-bottom: 16px;
+}
+
+.status {
+    font-weight: 600;
+}
+
+.status.online {
+    color: #22c55e;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* --------------------
+   👤 АККАУНТ — ПРАВАЯ ПАНЕЛЬ
+---------------------*/
+main {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+main>section {
+    flex: 1;
+}
+
+.account-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 90px;
+}
+
+.user-profile {
+    display: flex;
+    gap: 14px;
+    margin-top: 26px;
+    margin-bottom: 16px;
+}
+
+.user-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+}
+
+.user-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.upload-photo a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.upload-photo a:hover {
+    text-decoration: underline;
+}
+
+.user-meta {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.login-history h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.login-history ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.login-history li {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.gray {
+    color: var(--text-light);
+}
+
+.account-danger {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    text-align: center;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.danger-note {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 6px;
+}
+
+.settings-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    align-items: start;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.settings-main {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 900px;
+}
+
+.settings-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.account-card .user-profile {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.user-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+}
+
+.user-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.upload-photo a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.upload-photo a:hover {
+    text-decoration: underline;
+}
+
+.user-meta {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.login-history h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.login-history ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.login-history li {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.gray {
+    color: var(--text-light);
+}
+
+.account-danger {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    text-align: center;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.danger-note {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 6px;
+}
+
+.settings-block {
+    width: 100%;
+}
+
+.page-title {
+    grid-column: 1 / -1;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* — плавное появление страницы */
+.settings-layout {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInPage 0.6s ease forwards;
+}
+
+@keyframes fadeInPage {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* — плавное появление каждого блока настроек */
+.settings-block,
+.account-card,
+.system-info {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeInBlock 0.8s ease forwards;
+}
+
+/* задержки для последовательного появления */
+.settings-block:nth-of-type(1) {
+    animation-delay: 0.2s;
+}
+
+.settings-block:nth-of-type(2) {
+    animation-delay: 0.4s;
+}
+
+.settings-block:nth-of-type(3) {
+    animation-delay: 0.6s;
+}
+
+.account-card {
+    animation-delay: 0.8s;
+}
+
+.system-info {
+    animation-delay: 1s;
+}
+
+@keyframes fadeInBlock {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* — подсветка карточек при наведении */
+.settings-block:hover,
+.account-card:hover,
+.system-info:hover {
+    box-shadow: 0 4px 16px rgba(19, 127, 236, 0.15);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+
+/* — анимация появления заголовков секций */
+.section-title {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: fadeSlideTitle 0.7s ease forwards;
+}
+
+.section-title:nth-of-type(1) {
+    animation-delay: 0.3s;
+}
+
+.section-title:nth-of-type(2) {
+    animation-delay: 0.5s;
+}
+
+.section-title:nth-of-type(3) {
+    animation-delay: 0.7s;
+}
+
+@keyframes fadeSlideTitle {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* — лёгкое свечение вокруг активных переключателей */
+input[type="checkbox"]:checked+.slider {
+    box-shadow: 0 0 12px rgba(19, 127, 236, 0.45);
+}
+
+/* — пульсация для Online-статуса */
+.status.online {
+    position: relative;
+}
+
+.status.online::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 8px;
+    background: rgba(34, 197, 94, 0.3);
+    animation: pulseOnline 2s infinite ease-in-out;
+}
+
+@keyframes pulseOnline {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+}
+
+/* — плавное появление пользовательской информации */
+.user-profile,
+.user-actions,
+.login-history,
+.account-danger {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUpUser 0.6s ease forwards;
+}
+
+.user-profile {
+    animation-delay: 0.3s;
+}
+
+.user-actions {
+    animation-delay: 0.5s;
+}
+
+.login-history {
+    animation-delay: 0.7s;
+}
+
+.account-danger {
+    animation-delay: 0.9s;
+}
+
+@keyframes fadeUpUser {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

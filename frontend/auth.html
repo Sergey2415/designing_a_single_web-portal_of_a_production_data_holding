@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Авторизация — Единый портал производственных данных</title>
+    <script>
+        // Автоустановка темы (как в create-task)
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Unbounded:wght@200..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="auth-page">
+
+    <!--хедер только для страницы регистрации и входа -->
+    <header class="auth-header">
+        <div class="auth-header-container">
+            <div class="header-left">
+                <img src="img/company.png" alt="Логотип" class="logo" />
+                <h1 class="app-title">Единый Портал производственных данных</h1>
+            </div>
+            <div class="auth-actions">
+                <a href="auth.html" class="btn-auth active">Войти</a>
+                <a href="register.html" class="btn-auth">Регистрация</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="auth-main">
+        <h1 class="page-title">Добро пожаловать в Единый веб-портал<br>производственных данных холдинга</h1>
+        <div class="auth-container">
+            <section class="tip-block">
+                <h3>Подсказка</h3>
+                <p>Введите логин и пароль, выданные администратором.
+                    Если у вас ещё нет доступа — <a href="register.html" class="text-link">подайте заявку</a>.</p>
+            </section>
+
+            <section class="auth-card">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Логин</label>
+                        <input type="text" id="username" class="form-input" placeholder="Введите логин" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Пароль</label>
+                        <input type="password" id="password" class="form-input" placeholder="Введите пароль" required />
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember" />
+                            Запомнить меня
+                        </label>
+                        <a href="#" class="forgot-link">Забыли пароль?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--large">Авторизоваться</button>
+
+                    <p class="auth-note">
+                        Нет аккаунта? <a href="register.html" class="text-link">Подать заявку администратору</a>
+                    </p>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

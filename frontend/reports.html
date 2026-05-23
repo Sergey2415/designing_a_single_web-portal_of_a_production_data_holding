@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отчёты — Единый портал</title>
+
+    <script>
+        // Подключаем тему
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <!-- Твои базовые стили -->
+    <link rel="stylesheet" href="css/base.css" />
+    <!-- Стили конкретно для страницы отчётов -->
+    <link rel="stylesheet" href="css/reports.css" />
+
+    <script src="js/permissions.js" defer></script>
+    <script src="js/layout.js" defer></script>
+    <script src="js/reports.js" defer></script>
+</head>
+
+<body>
+    <!-- Хэдер и меню подгружаются layout.js -->
+    <main class="reports-page">
+        <h1 class="page-title">Модуль: Отчёты</h1>
+
+        <!-- Панель действий -->
+        <div class="reports-toolbar">
+            <button class="btn btn-primary" onclick="window.location='report-create.html'">+ Создать отчёт</button>
+        </div>
+
+        <!-- Фильтры -->
+        <section class="card filters-section">
+            <div class="filter-row">
+                <label>Период:</label>
+                <select id="dateFilter">
+                    <option value="all">Все даты</option>
+                    <option value="today">Сегодня</option>
+                    <option value="week">Неделя</option>
+                    <option value="month">Месяц</option>
+                    <option value="quarter">Квартал</option>
+                </select>
+
+                <label>Тип отчёта:</label>
+                <select id="typeFilter">
+                    <option value="all">Все типы</option>
+                    <option value="production">Производственные</option>
+                    <option value="financial">Финансовые</option>
+                    <option value="equipment">Оборудование</option>
+                    <option value="analytics">Аналитические</option>
+                </select>
+
+                <label>Статус:</label>
+                <select id="statusFilter">
+                    <option value="all">Все</option>
+                    <option value="ready">Готов</option>
+                    <option value="inProgress">В обработке</option>
+                    <option value="accepted">Принят</option>
+                </select>
+
+                <button class="btn btn-outline" id="applyFiltersBtn">Применить</button>
+            </div>
+        </section>
+
+        <!-- Таблица -->
+        <section class="card reports-table">
+            <div class="table-header">
+                <h2>Список отчётов</h2>
+                <div class="table-actions">
+                    <button class="btn btn-outline" id="exportBtn">Экспорт</button>
+                    <button class="btn btn-outline" id="refreshBtn">Обновить</button>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Тип отчёта</th>
+                        <th>Автор</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="reportsBody">
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 20px;">Загрузка...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Пагинация -->
+            <div class="pagination">
+                <button class="pagination-btn" disabled>‹ Назад</button>
+                <div class="pagination-pages">
+                    <span class="page active">1</span>
+                    <span class="page">2</span>
+                    <span class="page">3</span>
+                </div>
+                <button class="pagination-btn">Вперёд ›</button>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

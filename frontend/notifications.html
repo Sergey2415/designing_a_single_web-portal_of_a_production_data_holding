@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Уведомления и задачи — Единый портал</title>
+
+    <!-- Тема -->
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/notifications.css" />
+    <script src="js/layout.js" defer></script>
+    <script src="js/notifications.js" defer></script>
+
+</head>
+
+<body>
+    <!-- Хэдер и меню подгружаются layout.js -->
+    <main class="notifications-page">
+
+        <div class="page-header">
+            <div class="header-left">
+                <h1>Уведомления и задачи</h1>
+                <a href="tasks.html" class="goto-module">Перейти к <b>Модулю Задачи и контроль исполнения</b> »</a>
+            </div>
+            <button class="btn btn-outline refresh-btn">🔄 Обновить</button>
+        </div>
+
+        <section class="summary-cards">
+            <div class="summary-item">
+                <h3>Новые уведомления</h3>
+                <p class="value">12</p>
+            </div>
+            <div class="summary-item">
+                <h3>Открытые задачи</h3>
+                <p class="value">5</p>
+            </div>
+            <div class="summary-item">
+                <h3>Критические ошибки</h3>
+                <p class="value critical">2</p>
+            </div>
+            <div class="summary-item">
+                <h3>Новые задачи</h3>
+                <p class="value new">3</p>
+            </div>
+        </section>
+
+        <div class="filters">
+            <div class="filter-buttons">
+                <button class="filter-btn active">Все</button>
+                <button class="filter-btn error">Ошибки</button>
+                <button class="filter-btn task">Задачи</button>
+                <button class="filter-btn report">Отчёты</button>
+            </div>
+            <div class="filter-row">
+                <label>Сортировка:</label>
+                <select>
+                    <option>По времени</option>
+                    <option>По типу</option>
+                    <option>По приоритету</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Лента уведомлений -->
+        <section class="card notifications-list">
+
+            <div class="notification-item error">
+                <div class="notif-icon">⚠️</div>
+                <div class="notif-content">
+                    <h3>Ошибка загрузки</h3>
+                    <p>Не удалось загрузить данные для производственной линии 3. Проверьте соединение и повторите
+                        попытку.</p>
+                    <span class="notif-time">2 часа назад</span>
+                    <div class="notif-actions">
+                        <button class="btn btn-outline">💬 Комментарий</button>
+                        <button class="btn btn-outline">Назначить ответственного</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item report">
+                <div class="notif-icon">📄</div>
+                <div class="notif-content">
+                    <h3>Доступен новый отчёт</h3>
+                    <p>Производственный отчёт за третий квартал 2025 года уже доступен. Нажмите для просмотра.</p>
+                    <span class="notif-time">4 часа назад</span>
+                    <div class="notif-actions">
+                        <button class="btn btn-primary">Посмотреть отчёт</button>
+                        <button class="btn btn-outline">Закрыть уведомление</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item task">
+                <div class="notif-icon">✅</div>
+                <div class="notif-content">
+                    <h3>Назначена новая задача</h3>
+                    <p>Рассмотреть и утвердить производственный график на следующую неделю.</p>
+                    <span class="notif-time">6 часов назад</span>
+                    <div class="notif-actions">
+                        <button class="btn btn-primary">Посмотреть задачу</button>
+                        <button class="btn btn-outline">Отметить как выполненное</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пример для визуального разнообразия -->
+            <div class="notification-item info">
+                <div class="notif-icon">ℹ️</div>
+                <div class="notif-content">
+                    <h3>Плановая проверка систем</h3>
+                    <p>Сервис интеграций будет недоступен завтра с 01:00 до 03:00 по Москве.</p>
+                    <span class="notif-time">1 день назад</span>
+                    <div class="notif-actions">
+                        <button class="btn btn-outline">Понял</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</body>
+
+</html>

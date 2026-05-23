@@ -1,0 +1,130 @@
+.integrations-page {
+    margin-left: 240px;
+    margin-top: 64px;
+    padding: 32px;
+}
+
+.page-subtitle {
+    color: var(--text-light);
+    margin-bottom: 24px;
+}
+
+.connections-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.connections-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.connections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.integration-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.integration-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.integration-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.integration-card .desc {
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 6px 0 12px;
+}
+
+.integration-card .actions {
+    display: flex;
+    gap: 8px;
+}
+
+.status-label {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.status-label.success {
+    background: #22c55e;
+}
+
+.status-label.error {
+    background: #ef4444;
+}
+
+.status-label.warning {
+    background: #f59e0b;
+}
+
+/* История */
+.history-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    padding: 16px;
+}
+
+.summary-title {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.summary-change {
+    font-size: 13px;
+}
+
+.summary-change.positive,
+.summary-value.positive {
+    color: #22c55e;
+}
+
+.summary-change.negative,
+.summary-value.negative {
+    color: #ef4444;
+}
+
+/* Журналы */
+.logs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}

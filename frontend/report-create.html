@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Создание отчёта — Единый портал</title>
+
+    <script>
+        // Подключаем тему
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/reports-create.css" />
+    <script src="js/layout.js" defer></script>
+</head>
+
+<body>
+    <!-- Хэдер и меню подгружаются layout.js -->
+    <main class="report-create-page">
+        <h1 class="page-title">Создание отчёта</h1>
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> /
+            <a href="reports.html">Модуль: Отчеты</a> /
+            <span>Создание отчета</span>
+        </div>
+        <div class="report-create-container">
+            <!-- Левая панель -->
+            <aside class="report-settings card">
+                <h2>Параметры отчёта</h2>
+
+                <div class="form-group">
+                    <label>Название отчёта</label>
+                    <input type="text" id="reportTitle" class="form-input" placeholder="Введите название" value="Производственный отчёт за Q4 2025" />
+                </div>
+
+                <div class="form-group">
+                    <label>Период</label>
+                    <input type="text" id="reportPeriod" class="form-input" placeholder="Например: Q4 2025" value="Q4 2025" />
+                </div>
+
+                <div class="form-group">
+                    <label>Отдел</label>
+                    <input type="text" id="reportDepartment" class="form-input" placeholder="Название отдела" value="Производственный отдел" />
+                </div>
+
+                <div class="form-group">
+                    <label>Тип отчёта</label>
+                    <select id="reportTypeSelect" class="form-input">
+                        <option value="production" selected>Производственный</option>
+                        <option value="financial">Финансовый</option>
+                        <option value="equipment">Оборудование</option>
+                        <option value="analytics">Аналитический</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Статус</label>
+                    <select id="reportStatus" class="form-input">
+                        <option value="inProgress" selected>В обработке</option>
+                        <option value="ready">Готов</option>
+                        <option value="accepted">Принят</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Автор</label>
+                    <input type="text" id="reportAuthor" class="form-input" placeholder="ФИО автора" value="Администратор" />
+                </div>
+
+                <div class="form-group">
+                    <label>KPI</label>
+                    <input type="text" id="reportKpi" class="form-input" placeholder="Ключевой показатель" value="Производительность" />
+                </div>
+
+                <div class="form-group">
+                    <label>Содержание</label>
+                    <textarea id="reportContent" class="form-input" rows="4" placeholder="Описание отчёта...">Анализ производственных показателей за четвёртый квартал 2025 года</textarea>
+                </div>
+
+                <button class="btn btn-primary" id="createReportBtn">Сформировать отчёт</button>
+            </aside>
+
+            <!-- Правая панель -->
+            <section class="report-preview card" id="reportPreview">
+                <div class="placeholder">
+                    <img src="img/icons/report.svg" alt="Превью отчёта" class="sidebar-icon" />
+                    <p>Здесь появится предварительный просмотр вашего отчёта</p>
+                    <small>Выберите параметры слева и нажмите <b>«Сформировать отчёт»</b>.</small>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/report-create.js"></script>
+</body>
+
+</html>

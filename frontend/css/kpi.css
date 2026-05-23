@@ -1,0 +1,218 @@
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-panel {
+    display: flex;
+    align-items: center;
+}
+
+.filter-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.filter-row label {
+    font-weight: 500;
+}
+
+.filter-row select {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-row select:hover {
+    border-color: var(--accent);
+}
+
+.filter-row select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(19, 127, 236, 0.25);
+}
+
+/* Контейнер KPI */
+.kpi-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Карточка KPI */
+.summary-block {
+    flex: 1;
+    background: var(--white);
+    /* фон карточки */
+    border-radius: var(--radius);
+    /* скругление углов */
+    padding: 24px 16px;
+    text-align: center;
+    margin: 10px 0;
+    border: 1px solid var(--border);
+    /* чёткая рамка */
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.summary-block:hover {
+    transform: translateY(-3px);
+    /* слегка поднимается */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    /* тень сильнее */
+    border-color: var(--accent);
+    /* рамка подсвечивается */
+}
+
+/* Заголовки KPI */
+.summary-block h3 {
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Значения KPI */
+.summary-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--accent);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Положительные/отрицательные значения */
+.summary-value.positive {
+    color: #22c55e;
+}
+
+.summary-value.negative {
+    color: #ef4444;
+}
+
+/* Эффект при наведении на карточку — значение «оживает» */
+.summary-block:hover .summary-value {
+    transform: scale(1.1);
+}
+
+
+
+/* Подзаголовки/сравнение */
+.summary-sub {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.table {
+    border-collapse: separate;
+    /* важно для скруглений */
+    border-spacing: 0;
+}
+
+.table thead th {
+    background-color: var(--bg);
+    /* светлый фон для заголовка */
+    color: var(--text-light);
+    /* более приглушенный цвет текста */
+    font-weight: 600;
+    /* чуть жирнее */
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+}
+
+.table thead th:first-child {
+    border-top-left-radius: var(--radius);
+}
+
+.table thead th:last-child {
+    border-top-right-radius: var(--radius);
+}
+
+/* Ссылки с наименованиями отчетов */
+.table tbody td:first-child a {
+    color: var(--accent);
+    /* цвет акцента */
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.table tbody td:first-child a:hover {
+    color: #0d4fef;
+}
+
+.table tbody td:first-child a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.table tbody td:first-child a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Дополнительно: можно подчеркнуть визуальную иерархию */
+.table tbody td:first-child {
+    font-size: 15px;
+}
+
+/* Стили для всех ссылок в таблице KPI */
+.table a {
+    color: var(--accent);
+    /* цвет акцента */
+    text-decoration: none;
+    /* убираем стандартное подчёркивание */
+    font-weight: 600;
+    /* чуть жирнее для акцента */
+    position: relative;
+    /* для псевдоэлемента */
+    transition: color 0.3s ease;
+}
+
+/* Эффект при наведении */
+.table a:hover {
+    color: #0d4fef;
+    /* более яркий акцент при наведении */
+}
+
+/* Псевдоэлемент для красивого подчеркивания */
+.table a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    /* небольшое расстояние под текстом */
+    width: 100%;
+    height: 2px;
+    /* толщина линии */
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+/* Анимация подчеркивания при наведении */
+.table a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}

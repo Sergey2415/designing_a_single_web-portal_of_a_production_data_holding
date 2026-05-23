@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700&display=swap&subset=cyrillic');
+
+:root {
+    --accent: #2872ea;
+    --text: #101922;
+    --text-light: #6b7280;
+    --bg: #f6f8fa;
+    --white: #ffffff;
+    --border: #e5e7eb;
+    --surface: #ffffff;
+    --radius: 10px;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+
+/* 🌙 Тёмная тема */
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --text: #e2e8f0;
+    --text-light: #94a3b8;
+    --surface: #1e293b;
+    --card-bg: #1e293b;
+    --border: #334155;
+    --accent: #3b82f6;
+    --white: #1e293b;
+}
+
+.sidebar-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: filter 0.3s ease;
+}
+
+.sidebar-icon {
+    filter: invert(34%) sepia(85%) saturate(4000%) hue-rotate(190deg) brightness(100%) contrast(95%);
+}
+
+[data-theme="dark"] .sidebar-icon {
+    filter: invert(34%) sepia(85%) saturate(4000%) hue-rotate(190deg) brightness(100%) contrast(95%);
+}
+
+
+html.theme-transition,
+body.theme-transition {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.4s ease;
+    ;
+}
+
+.sidebar,
+.app-header,
+.card,
+body {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.4s ease;
+    ;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.5s, color 0.5s, border-color 0.4s ease;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Geologica", sans-serif;
+    font-weight: 400;
+    color: var(--text);
+}
+
+
+.sidebar {
+    position: fixed;
+    /* ✅ остаётся на экране */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    /* на всю высоту окна */
+    width: 240px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+    border-top-right-radius: 20px;
+    /* ✅ скруглённый угол сверху */
+    border-bottom-right-radius: 20px;
+    z-index: 20;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--accent);
+    text-align: center;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background: rgba(19, 127, 236, 0.08);
+    color: var(--accent);
+    transform: translateX(4px);
+}
+
+.sidebar-link.active {
+    background: var(--accent);
+    color: var(--white);
+    box-shadow: 0 2px 6px rgba(19, 127, 236, 0.3);
+}
+
+/* -------------------------
+   🔝 HEADER
+-------------------------- */
+.app-header {
+    position: fixed;
+    /* ✅ тоже остаётся на экране */
+    top: 0;
+    left: 240px;
+    right: 0;
+    height: 64px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 30;
+    border-bottom-left-radius: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+.logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+}
+
+.app-title {
+    font-family: "Unbounded", sans-serif;
+    /* 🌟 основной шрифт */
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.app-title:hover {
+    color: #0d4fef;
+    /* лёгкий ховер-эффект */
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+}
+
+.header-user .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    transition: 0.2s;
+}
+
+.header-user .user-avatar:hover {
+    transform: scale(1.05);
+}
+
+/* -------------------------
+   📦 MAIN CONTENT
+-------------------------- */
+
+main {
+    margin-left: 260px;
+    margin-top: 84px;
+    padding: 32px;
+    flex: 1;
+    min-height: calc(100vh - 84px);
+    background: var(--bg);
+    transition: margin 0.3s ease;
+    overflow-x: hidden;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+/* -------------------------
+   🧱 CARD & TABLES
+-------------------------- */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.table th,
+.table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.table th {
+    background: rgba(19, 127, 236, 0.1);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.table td {
+    color: var(--text);
+}
+
+.table .positive {
+    color: #22c55e;
+}
+
+.table .negative {
+    color: #ef4444;
+}
+
+/* -------------------------
+   🔘 BUTTONS
+-------------------------- */
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #0e6fd4;
+}
+
+.btn-outline {
+    background: rgba(19, 127, 236, 0.1);
+    color: var(--accent);
+}
+
+.btn-outline:hover {
+    background: rgba(19, 127, 236, 0.2);
+}
+
+body {
+    font-family: "Geologica", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 8px 0;
+    cursor: pointer;
+    color: #333;
+}
+
+.sidebar li.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.settings {
+    flex: 1;
+    padding: 30px;
+}
+
+.block {
+    background: var(--surface);
+    color: var(--text);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-row label {
+    flex: 1;
+}
+
+.form-row select,
+.form-row input {
+    flex: 2;
+    padding: 5px;
+}
+
+button {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0e6fd4;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+    margin-left: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border);
+    border-radius: 22px;
+    transition: .3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+input:checked+.slider {
+    background-color: #007bff;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}

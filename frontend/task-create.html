@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Создание задачи — Единый портал</title>
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/task-create.css" />
+    <script src="js/layout.js" defer></script>
+    <script src="js/task-create.js" defer></script>
+</head>
+
+<body>
+    <main class="task-create-page">
+        <h1 class="page-title">Создание новой задачи</h1>
+
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> /
+            <a href="tasks.html">Задачи и контроль исполнения</a> /
+            <span>Создание задачи</span>
+        </div>
+        <section class="card tip-block">
+            <h3>Подсказка</h3>
+            <p>Старайтесь формулировать задачи коротко и конкретно.</p>
+            <ul>
+                <li>Укажите измеримый результат</li>
+                <li>Задайте ответственного и срок</li>
+                <li>Прикрепите шаблон или пример отчёта</li>
+            </ul>
+        </section>
+        <section class="card create-task">
+            <form class="task-form" id="taskForm">
+                <div class="form-row">
+                    <label>Заголовок задачи</label>
+                    <input type="text" id="title" placeholder="Введите заголовок" required />
+                </div>
+                <div class="form-row">
+                    <label>Описание</label>
+                    <textarea id="description" placeholder="Опишите задачу"></textarea>
+                </div>
+                <div class="form-row">
+                    <label>Связь с отчётом (опционально)</label>
+                    <input type="text" id="report" placeholder="Например: Производственный отчёт Q4 2025" />
+                </div>
+                <div class="form-row">
+                    <label>Ответственный</label>
+                    <select id="responsible" required>
+                        <option value="" disabled selected hidden>Загрузка...</option>
+                    </select>
+                </div>
+                <div class="form-row inline">
+                    <div>
+                        <label>Срок выполнения</label>
+                        <input type="date" id="due" required />
+                    </div>
+                    <div>
+                        <label>Приоритет</label>
+                        <select id="priority">
+                            <option value="Низкий">Низкий</option>
+                            <option value="Средний" selected>Средний</option>
+                            <option value="Высокий">Высокий</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>Прикрепить файл отчёта (опционально)</label>
+                    <div class="file-upload">
+                        <input type="file" id="reportFile" hidden />
+                        <label for="reportFile" class="btn btn-upload">Выбрать файл</label>
+                        <span class="file-name">Файл не выбран</span>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit" id="submitBtn">💾 Сохранить задачу</button>
+                    <button class="btn btn-outline" type="button" onclick="window.location='tasks.html'">Отмена</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

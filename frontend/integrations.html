@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Интеграции — Единый портал</title>
+
+    <!-- Поддержка темы (из localStorage) -->
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/integrations.css" />
+    <script src="js/layout.js" defer></script>
+</head>
+
+<body>
+    <!-- Хэдер и меню подгружаются layout.js -->
+    <main class="integrations-page">
+        <h1 class="page-title">Интеграции</h1>
+        <p class="page-subtitle">
+            Управление подключениями, историей обмена данными и контролем ошибок для интеграции с локальными
+            ИТ-системами.
+        </p>
+
+        <!-- Подключения -->
+        <section class="card connections-section">
+            <div class="connections-header">
+                <h2>Подключения к локальным ИС</h2>
+                <div class="connections-actions">
+                    <button class="btn btn-outline">Группировать по типу системы</button>
+                    <button class="btn btn-primary">+ Добавить новое подключение</button>
+                </div>
+            </div>
+
+            <div class="connections-grid">
+                <div class="integration-card active">
+                    <div class="status-label success">Активно</div>
+                    <h3>ERP System</h3>
+                    <p class="desc">Последняя синхронизация: 2 часа назад</p>
+                    <div class="actions">
+                        <button class="btn btn-outline">Проверить</button>
+                        <button class="btn btn-outline">Настроить</button>
+                    </div>
+                </div>
+
+                <div class="integration-card error">
+                    <div class="status-label error">Ошибка</div>
+                    <h3>MES System</h3>
+                    <p class="desc">Последняя синхронизация: 1 день назад</p>
+                    <div class="actions">
+                        <button class="btn btn-outline">Проверить</button>
+                        <button class="btn btn-outline">Настроить</button>
+                    </div>
+                </div>
+
+                <div class="integration-card warning">
+                    <div class="status-label warning">В ожидании</div>
+                    <h3>CRM System</h3>
+                    <p class="desc">Синхронизация ещё не выполнялась</p>
+                    <div class="actions">
+                        <button class="btn btn-outline">Проверить</button>
+                        <button class="btn btn-outline">Настроить</button>
+                    </div>
+                </div>
+
+                <div class="integration-card active">
+                    <div class="status-label success">Активно</div>
+                    <h3>1C System</h3>
+                    <p class="desc">Последняя синхронизация: 5 минут назад</p>
+                    <div class="actions">
+                        <button class="btn btn-outline">Проверить</button>
+                        <button class="btn btn-outline">Настроить</button>
+                    </div>
+                </div>
+
+                <div class="integration-card warning">
+                    <div class="status-label warning">В ожидании</div>
+                    <h3>Other System</h3>
+                    <p class="desc">Синхронизация ещё не выполнялась</p>
+                    <div class="actions">
+                        <button class="btn btn-outline">Проверить</button>
+                        <button class="btn btn-outline">Настроить</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- История -->
+        <section class="card history-section">
+            <h2>История импорта и синхронизации</h2>
+
+            <div class="history-summary">
+                <div class="summary-card">
+                    <p class="summary-title">Успешные синхронизации</p>
+                    <h3 class="summary-value positive">12,345</h3>
+                    <p class="summary-change positive">+10%</p>
+                </div>
+
+                <div class="summary-card">
+                    <p class="summary-title">Ошибки за период</p>
+                    <h3 class="summary-value negative">56</h3>
+                    <p class="summary-change negative">−5%</p>
+                </div>
+
+                <div class="summary-card">
+                    <p class="summary-title">Среднее время импорта</p>
+                    <h3 class="summary-value">2m 30s</h3>
+                    <p class="summary-change positive">+2%</p>
+                </div>
+
+                <div class="summary-card">
+                    <p class="summary-title">Последняя синхронизация</p>
+                    <h3 class="summary-value">10:00</h3>
+                    <p class="summary-change">Сегодня</p>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Система</th>
+                        <th>Дата</th>
+                        <th>Записи</th>
+                        <th>Статус</th>
+                        <th>Время выполнения</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ERP Система</td>
+                        <td>2025-01-20 09:00</td>
+                        <td>1,234</td>
+                        <td class="positive">Успешно</td>
+                        <td>2m 15s</td>
+                    </tr>
+                    <tr>
+                        <td>MES Система</td>
+                        <td>2025-01-20 09:30</td>
+                        <td>567</td>
+                        <td class="negative">Ошибка</td>
+                        <td>3m 00s</td>
+                    </tr>
+                    <tr>
+                        <td>CRM Система</td>
+                        <td>2025-01-20 10:00</td>
+                        <td>890</td>
+                        <td class="positive">Успешно</td>
+                        <td>1m 45s</td>
+                    </tr>
+                    <tr>
+                        <td>1C Система</td>
+                        <td>2025-01-20 10:30</td>
+                        <td>345</td>
+                        <td class="positive">Успешно</td>
+                        <td>2m 00s</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Журнал вызовов -->
+        <section class="card logs-section">
+            <div class="logs-header">
+                <h2>Журналы вызовов и ошибок API</h2>
+                <button class="btn btn-outline">⬇ Экспорт журнала</button>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Система</th>
+                        <th>Адрес API</th>
+                        <th>Статус</th>
+                        <th>Сообщение об ошибке</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-01-20 09:05</td>
+                        <td>ERP Система</td>
+                        <td>/api/v1/products</td>
+                        <td class="positive">200</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-20 09:35</td>
+                        <td>MES Система</td>
+                        <td>/api/v1/orders</td>
+                        <td class="negative">400</td>
+                        <td>Неверный идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-20 10:15</td>
+                        <td>CRM Система</td>
+                        <td>/api/v1/customers</td>
+                        <td class="positive">200</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-20 10:35</td>
+                        <td>1C Система</td>
+                        <td>/api/v1/inventory</td>
+                        <td class="negative">500</td>
+                        <td>Внутренняя ошибка сервера</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,592 @@
+/* === Общий фон и структура === */
+.profile-page,
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--bg);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Фон с узором и радиальными бликами (как в auth / register) */
+.profile-page::before,
+.app-layout::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        url("../img/bg-pattern.jpg") center/cover no-repeat,
+        radial-gradient(circle at 20% 30%, rgba(19, 127, 236, 0.12), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.12), transparent 80%);
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Чтобы фон был одинаково тёмным даже при светлой теме */
+body[data-theme="light"] .app-layout::before {
+    background:
+        url("../img/bg-pattern.jpg") center/cover no-repeat,
+        radial-gradient(circle at 20% 30%, rgba(19, 127, 236, 0.25), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.25), transparent 80%),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 1));
+    opacity: 0.9;
+}
+
+/* === Основной контент === */
+.main-content {
+    z-index: 1;
+    padding: 100px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 24px;
+    text-align: center;
+    position: relative;
+}
+
+/* === Карточки и контейнеры === */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* === Профиль === */
+.profile-main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.profile-card {
+    width: 100%;
+    animation: fadeIn 0.6s ease;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    box-shadow: 0 0 12px rgba(19, 127, 236, 0.4);
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-hover);
+}
+
+.profile-basic-info h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.profile-basic-info p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* === Детали профиля === */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 260px;
+    margin-bottom: 24px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+}
+
+.detail-label {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.detail-value {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 58px;
+}
+
+/* === Кнопки действий === */
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* === Метрики === */
+.metrics-section {
+    margin-top: 40px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 24px;
+}
+
+.metric-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.metric-change {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.metric-change--positive {
+    color: #22c55e;
+}
+
+.metric-change--negative {
+    color: #ef4444;
+}
+
+/* === Активность / задачи / команда === */
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 40px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Активность */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.activity-icon {
+    font-size: 20px;
+    color: var(--accent);
+}
+
+.activity-text {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.activity-time {
+    display: block;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* Задачи */
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    border-color: var(--accent);
+}
+
+.task-title {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.task-priority {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.task-priority--high {
+    color: #ef4444;
+}
+
+.task-priority--medium {
+    color: #f59e0b;
+}
+
+.task-deadline {
+    display: block;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* Команда */
+.team-members {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.member-name {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.member-status {
+    font-size: 13px;
+}
+
+.member-status--online {
+    color: #22c55e;
+}
+
+.member-status--offline {
+    color: #94a3b8;
+}
+
+/* === Таблица отчётов === */
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.data-table th {
+    text-align: left;
+    background: var(--surface);
+    color: var(--text-light);
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.data-table tr:hover td {
+    background: rgba(19, 127, 236, 0.06);
+}
+
+/* === Кнопки === */
+.btn--primary {
+    background: linear-gradient(90deg, #137fec, #004de6);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn--primary:hover {
+    background: linear-gradient(90deg, #0b5fdc, #003ad1);
+}
+
+.btn--outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn--outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* === Анимация === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.metric-value {
+    position: relative;
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text);
+    animation: countPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes countPulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+        color: var(--accent);
+    }
+}
+
+/* === Иконки === */
+.activity-icon img,
+.member-avatar img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) saturate(100%) invert(23%) sepia(95%) saturate(3147%) hue-rotate(206deg) brightness(97%) contrast(98%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.activity-icon svg,
+.member-avatar svg {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.3s ease, filter 0.3s ease, fill 0.3s ease;
+    fill: var(--text-light);
+}
+
+/* при тёмной теме — осветляем */
+[data-theme="dark"] .activity-icon svg,
+[data-theme="dark"] .member-avatar svg {
+    fill: #e2e8f0;
+}
+
+.activity-item:hover svg,
+.team-member:hover svg {
+    transform: scale(1.1);
+    fill: var(--accent);
+}
+
+[data-theme="dark"] .activity-icon img,
+[data-theme="dark"] .member-avatar img {
+    filter: brightness(0) invert(1);
+}
+
+.activity-item:hover img {
+    transform: scale(1.15);
+    filter: brightness(1.3);
+}
+
+/* === Новые кнопки === */
+.btn-gradient {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    transform: translateY(-1px);
+}
+
+.btn-border {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-border:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.btn-exit {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-exit:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+/* === Эффект свечения на карточках === */
+.metric-card:hover {
+    box-shadow: 0 0 15px rgba(19, 127, 236, 0.4);
+    transform: translateY(-3px);
+}
+
+
+/* === Кнопки профиля === */
+.profile-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+/* Универсальная база */
+.profile-actions .btn {
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+
+/* Градиентная */
+.btn-gradient {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(90deg, #1d4ed8, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+}
+
+/* Обводка */
+.btn-border {
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text);
+}
+
+.btn-border:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(59, 130, 246, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Выход */
+.btn-exit {
+    background: linear-gradient(90deg, #dc2626, #ef4444);
+    border: none;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
+.btn-exit:hover {
+    background: linear-gradient(90deg, #b91c1c, #dc2626);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+}

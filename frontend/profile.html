@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Профиль — Единый портал производственных данных</title>
+
+    <script>
+        // Автоустановка темы (как в других страницах)
+        (function () {
+            try {
+                const t = localStorage.getItem('theme');
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { }
+        })();
+    </script>
+
+    <!-- Общие стили -->
+    <link rel="stylesheet" href="css/base.css" />
+    <!-- Уникальные стили профиля -->
+    <link rel="stylesheet" href="css/profile.css" />
+
+    <link rel="icon" href="img/vector.svg" type="image/svg+xml" />
+</head>
+
+
+<body class="app-layout">
+
+    <!-- 🔹 Хедер (загружается динамически через layout.js) -->
+    <div id="header"></div>
+
+    <!-- 🔹 Сайдбар -->
+    <div id="sidebar"></div>
+
+    <!-- 🔹 Основной контент -->
+    <main class="main-content">
+        <section class="dashboard-content">
+            <h2 class="section-title">Профиль пользователя</h2>
+
+            <!-- Основная карточка профиля -->
+            <div class="profile-main">
+                <div class="profile-card card">
+                    <div class="profile-header">
+                        <div class="profile-avatar-section">
+                            <img src="" alt="Аватар" class="profile-avatar" style="display: none;" />
+                            <div class="profile-basic-info">
+                                <h1 class="profile-name">Загрузка...</h1>
+                                <p class="profile-position">...</p>
+                                <p class="profile-location">...</p>
+                            </div>
+                        </div>
+
+                        <div class="profile-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Уровень доступа:</span>
+                                <span class="detail-value">...</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Email:</span>
+                                <span class="detail-value">...</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Телефон:</span>
+                                <span class="detail-value">...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn-gradient">Редактировать</button>
+                        <button class="btn-border">Сменить пароль</button>
+                        <button class="btn-exit" id="logoutBtn">Выйти</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Показатели -->
+            <section class="metrics-section">
+                <h2 class="section-title">Персональные показатели</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card card" data-metric="laborProductivity">
+                        <h3 class="metric-title">Производительность труда</h3>
+                        <div class="metric-value" data-target="0">0%</div>
+                        <div class="metric-change">...</div>
+                    </div>
+                    <div class="metric-card card" data-metric="repairEfficiency">
+                        <h3 class="metric-title">Эффективность ремонтов</h3>
+                        <div class="metric-value" data-target="0">0%</div>
+                        <div class="metric-change">...</div>
+                    </div>
+                    <div class="metric-card card" data-metric="equipmentDowntime">
+                        <h3 class="metric-title">Средний простой</h3>
+                        <div class="metric-value" data-target="0">0 ч</div>
+                        <div class="metric-change">...</div>
+                    </div>
+                    <div class="metric-card card" data-metric="cost">
+                        <h3 class="metric-title">Производственные затраты</h3>
+                        <div class="metric-value" data-target="0">0 ₽</div>
+                        <div class="metric-change">...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Активность / Задачи -->
+            <div class="two-columns">
+                <div class="column">
+                    <!-- Активность -->
+                    <section class="activity-section card">
+                        <h2 class="section-title">Активность</h2>
+                        <div class="activity-list">
+                            <p style="text-align: center; color: var(--text-light); padding: 20px;">Загрузка...</p>
+                        </div>
+                    </section>
+
+                    <!-- Отчеты -->
+                    <section class="reports-section card">
+                        <h2 class="section-title">Отчёты</h2>
+                        <div class="table-container">
+                            <table class="data-table reports-table">
+                                <thead>
+                                    <tr>
+                                        <th>Филиал</th>
+                                        <th>Показатель 1</th>
+                                        <th>Показатель 2</th>
+                                        <th>Показатель 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 20px; color: var(--text-light);">Загрузка...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="reports-actions">
+                            <button class="btn-gradient">Открыть детальный отчёт</button>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="column">
+                    <!-- Задачи -->
+                    <section class="tasks-section card">
+                        <h2 class="section-title">Задачи и уведомления</h2>
+                        <div class="tasks-list">
+                            <p style="text-align: center; color: var(--text-light); padding: 20px;">Загрузка...</p>
+                        </div>
+                    </section>
+
+                    <!-- Команда -->
+                    <section class="team-section card">
+                        <h2 class="section-title">Команда</h2>
+                        <div class="team-members team-list">
+                            <p style="text-align: center; color: var(--text-light); padding: 20px;">Загрузка...</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 🔹 Футер -->
+    <div id="footer"></div>
+
+    <!-- Скрипты -->
+    <script src="js/main.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>

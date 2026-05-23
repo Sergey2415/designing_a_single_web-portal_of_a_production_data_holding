@@ -1,0 +1,217 @@
+.breadcrumb {
+    color: var(--text-light);
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    /* для псевдоэлемента */
+    transition: color 0.3s ease;
+}
+
+/* Подсветка при наведении — меняем цвет */
+.breadcrumb a:hover {
+    color: #0d4fef;
+}
+
+/* Лёгкая анимация подчёркивания */
+.breadcrumb a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    /* небольшое расстояние под текстом */
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+/* Анимация при наведении */
+.breadcrumb a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Для текущего элемента (span) можно чуть приглушить */
+.breadcrumb span {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.kpi-details {
+    margin-bottom: 24px;
+}
+
+.kpi-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.kpi-stats .stat {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid var(--border);
+}
+
+.kpi-stats .stat:last-child {
+    border-right: none;
+}
+
+.kpi-stats .label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.kpi-stats .value {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tab {
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+}
+
+.tab.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+}
+
+/* ---------------- Таблицы KPI ---------------- */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    /* нужно для скруглений */
+    border-spacing: 0;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    /* чтобы скругления работали */
+    box-shadow: var(--shadow);
+}
+
+.table thead th {
+    background-color: var(--bg);
+    color: var(--text-light);
+    font-weight: 600;
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+}
+
+/* Скругления углов заголовка */
+.table thead th:first-child {
+    border-top-left-radius: var(--radius);
+}
+
+.table thead th:last-child {
+    border-top-right-radius: var(--radius);
+}
+
+/* Строки таблицы */
+.table tbody tr {
+    transition: background 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(19, 127, 236, 0.05);
+}
+
+/* Ссылки в первой колонке (наименования отчетов) */
+.table tbody td:first-child a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.table tbody td:first-child a:hover {
+    color: #0d4fef;
+}
+
+.table tbody td:first-child a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.table tbody td:first-child a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ---------------- Табы ---------------- */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tab {
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+/* Активный таб */
+.tab.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+}
+
+/* Наведение на таб */
+.tab:hover {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+/* ---------------- Выравнивание ячеек и визуальная иерархия ---------------- */
+.table td,
+.table th {
+    padding: 12px 8px;
+}
+
+/* Подсветка положительного/отрицательного отклонения */
+.table .positive {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.table .negative {
+    color: #ef4444;
+    font-weight: 600;
+}

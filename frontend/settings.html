@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Настройки системы — Единый портал</title>
+    <script>
+        (function () {
+            try {
+                const t = localStorage.getItem('theme'); // "light" | "dark" | "system" | null
+                if (!t) return;
+                if (t === 'system') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', t);
+                }
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <script src="js/layout.js" defer></script>
+    <script src="js/settings.js" defer></script>
+</head>
+
+<body>
+    <!-- Хэдер и меню подключаются из layout.js -->
+    <main>
+        <div class="settings-layout">
+            <div class="settings-main">
+                <h1 class="page-title">Настройки системы</h1>
+                <!-- 🔹 Общие параметры -->
+                <section class="card settings-block">
+                    <h2 class="section-title">
+                        <img src="img/icons/settings.svg" alt="" class="sidebar-icon">
+                        Общие параметры
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-item">
+                            <label>Язык интерфейса</label>
+                            <select id="language">
+                                <option value="ru">Русский</option>
+                                <option value="en">Английский</option>
+                            </select>
+                        </div>
+
+                        <div class="form-item">
+                            <label>Формат времени</label>
+                            <select id="timeFormat">
+                                <option value="24h">24-часовой</option>
+                                <option value="12h">12-часовой</option>
+                            </select>
+                        </div>
+
+                        <div class="form-item">
+                            <label>Формат даты</label>
+                            <select id="dateFormat">
+                                <option value="DD.MM.YYYY">DD.MM.YYYY</option>
+                                <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                            </select>
+                        </div>
+
+                        <div class="form-item">
+                            <label>Региональные настройки</label>
+                            <select id="regional">
+                                <option value="RUB">RUB, кг</option>
+                                <option value="USD">USD, lbs</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="saveGeneralBtn">Сохранить изменения</button>
+                </section>
+
+                <!-- 🔹 Тема оформления -->
+                <section class="card settings-block">
+                    <h2 class="section-title">
+                        <img src="img/icons/theme.svg" alt="" class="sidebar-icon">
+                        Тема оформления
+                    </h2>
+
+                    <div class="theme-options">
+                        <label class="theme-card">
+                            <input type="radio" name="theme" value="light">
+                            <div class="theme-preview light"></div>
+                            <span>Светлая</span>
+                        </label>
+
+                        <label class="theme-card">
+                            <input type="radio" name="theme" value="dark">
+                            <div class="theme-preview dark"></div>
+                            <span>Тёмная</span>
+                        </label>
+
+                        <label class="theme-card">
+                            <input type="radio" name="theme" value="system">
+                            <div class="theme-preview system"></div>
+                            <span>Системная</span>
+                        </label>
+                    </div>
+
+                    <div class="switch-row">
+                        <label>Автоматически менять тему по времени суток</label>
+                        <label class="switch">
+                            <input type="checkbox" id="autoThemeByTime">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- 🔹 Уведомления -->
+                <section class="card settings-block">
+                    <h2 class="section-title">
+                        <img src="img/icons/notif.svg" alt="" class="sidebar-icon">
+                        Уведомления
+                    </h2>
+
+                    <ul class="notify-list">
+                        <li><input type="checkbox" id="notifyNewReports"> Уведомлять о новых отчётах</li>
+                        <li><input type="checkbox" id="notifyEquipmentFailures"> Предупреждать о сбоях оборудования</li>
+                        <li><input type="checkbox" id="notifyDailyEmail"> Отправлять дневную сводку на email</li>
+                        <li><input type="checkbox" id="notifyPushBrowser"> Push-уведомления в браузере</li>
+                        <li><input type="checkbox" id="notifyTelegram"> Уведомления в Telegram</li>
+                    </ul>
+
+                    <div class="form-item volume-control">
+                        <label>Громкость звуков уведомлений</label>
+                        <input type="range" min="0" max="100" id="soundVolume">
+                    </div>
+
+                    <div class="switch-row">
+                        <label>Не беспокоить (режим рабочего совещания)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="doNotDisturb">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="saveNotificationsBtn">Сохранить настройки уведомлений</button>
+                </section>
+            </div>
+
+            <!-- Правая колонка -->
+            <aside class="settings-sidebar">
+                <div class="card account-card">
+                    <h2 class="section-title">
+                        <img src="img/icons/user.svg" alt="" class="sidebar-icon">
+                        Настройки аккаунта
+                    </h2>
+
+                    <div class="user-profile">
+                        <img src="" alt="Аватар" class="user-avatar" id="userAvatar" style="display: none;">
+                        <div class="user-info">
+                            <h3 id="userName">Загрузка...</h3>
+                            <p class="upload-photo">
+                                <label for="avatarUpload" style="cursor: pointer; color: var(--accent);">Загрузить новое фото</label>
+                                <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                            </p>
+                            <p class="user-meta">Должность: <strong id="userRole">...</strong></p>
+                            <p class="user-meta">Отдел: <strong id="userDept">...</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="user-actions">
+                        <button class="btn btn-outline" id="changePasswordBtn">Изменить пароль</button>
+                        <button class="btn btn-outline" id="setup2faBtn">Настроить двухфакторную аутентификацию</button>
+                    </div>
+
+                    <div class="login-history">
+                        <h4>История входов</h4>
+                        <ul id="loginHistory">
+                            <li style="color: var(--text-light);">Загрузка...</li>
+                        </ul>
+                    </div>
+
+                    <div class="account-danger">
+                        <button class="btn btn-danger" id="deleteAccountBtn">Удалить аккаунт</button>
+                        <p class="danger-note">Это действие необратимо</p>
+                    </div>
+                </div>
+
+                <div class="card system-info">
+                    <h2 class="section-title">
+                        <img src="img/icons/info.svg" alt="" class="sidebar-icon">
+                        Системная информация
+                    </h2>
+
+                    <div class="info-grid">
+                        <p><strong>Версия портала:</strong> 2.10-beta</p>
+                        <p><strong>Последнее обновление:</strong> 20.05.2024</p>
+                        <p><strong>Доступность сервера:</strong> <span class="status online">Online</span></p>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="btn btn-outline">Проверить обновления</button>
+                        <button class="btn btn-outline">Отправить отчёт об ошибке</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+
+</html>
